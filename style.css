@@ -1,0 +1,27 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Changa+One:ital@0;1&family=League+Spartan:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap');
+.safadera {
+  font-family: "Share Tech", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+/* // <weight>: Use a value from 100 to 900
+// <uniquifier>: Use a unique and descriptive class name */
+
+.papapa {
+  font-family: "League Spartan", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pipipi {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
