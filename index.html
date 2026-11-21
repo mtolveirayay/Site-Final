@@ -4,94 +4,219 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Juniors</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
-    </style>
+
+    <!-- Fontes do slide -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-linear-to-r from-[#5E8271] to-[#33454E]">
-  
-    <header class="bg-[#9E9C71] w-full h-[6vh] flex justify-between px-6 items-center sticky top-0 z-50 shadow-md">
 
-        <ul class="flex items-center">
-            <li><a href="DB.html" class="text-[#1F2421] hover:text-black m-3 text-lg font-medium transition">Login</a></li>
-            <li><a href="DBcadastrousuario.html" class="text-[#1F2421] hover:text-black m-3 text-lg font-medium transition">Cadastre-se</a></li>
+<body class="relative min-h-screen overflow-x-hidden bg-gradient-to-r from-[#5E8271] to-[#33454E] font-roboto text-white">
+
+    <!-- CABEÇALHO -->
+    <header class="sticky top-0 z-50 flex min-h-[6vh] w-full flex-wrap items-center justify-between gap-4 bg-[#9E9C71] px-6 py-2 shadow-md">
+
+        <ul class="flex list-none items-center gap-4">
+            <li><a href="DB.html" class="m-1 text-base font-medium text-[#1F2421] transition hover:text-white">Login</a></li>
+            <li><a href="DBcadastrousuario.html" class="m-1 text-base font-medium text-[#1F2421] transition hover:text-white">Criar conta</a></li>
         </ul>
 
-        <form id="form-pesquisa" class="flex items-center bg-white rounded-full px-4 py-1.5 w-64 md:w-80 shadow-xs">
-            <input 
-                type="text" 
-                id="campo-pesquisa" 
-                placeholder="Search" 
+        <form id="form-pesquisa" class="flex w-64 items-center rounded-full bg-white px-4 py-2 shadow-sm md:w-80">
+            <input
+                type="text"
+                id="campo-pesquisa"
+                placeholder="Search"
                 aria-label="Pesquisar seção"
-                class="w-full bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none text-base"
+                class="w-full bg-transparent text-base text-gray-800 outline-none placeholder:text-gray-400"
             >
-            <button type="submit" aria-label="Buscar" class="text-[#1F2421] hover:opacity-70 cursor-pointer ml-2">
+            <button type="submit" aria-label="Buscar" class="ml-2 cursor-pointer text-[#1F2421] transition hover:opacity-60">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
                 </svg>
             </button>
         </form>
 
-        
-        <ul class="flex items-center">
-            <li><a href="#sobre" class="text-[#1F2421] hover:text-black m-3 text-lg font-medium transition">Sobre</a></li>
-            <li><a href="#servicos" class="text-[#1F2421] hover:text-black m-3 text-lg font-medium transition">Serviços</a></li>
-            <li><a href="#contato" class="text-[#1F2421] hover:text-black m-3 text-lg font-medium transition">Contato</a></li>
-        </ul>
+        <nav class="flex items-center gap-4">
+            <a href="#servicos" class="text-base font-medium text-[#1F2421] transition hover:text-white">Serviços</a>
+            <a href="#sobre" class="text-base font-medium text-[#1F2421] transition hover:text-white">Sobre nós</a>
+
+            <div class="relative" id="dropdown-container">
+                <button type="button" id="menu-button" aria-expanded="false" class="cursor-pointer text-base font-medium text-[#1F2421] transition hover:text-white">
+                    Menu <span class="ml-1">⌄</span>
+                </button>
+
+                <div id="menu-dropdown" class="absolute right-0 top-9 hidden max-h-[70vh] w-56 flex-col overflow-y-auto rounded-xl bg-[#E5DFBD] p-2 shadow-xl">
+                    <a href="#inicio" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Início</a>
+                    <a href="#sobre" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Sobre nós</a>
+                    <a href="#contato" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Contato</a>
+                    <a href="#servicos" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Serviços</a>
+                    <a href="#produtos" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Produtos</a>
+                    <a href="#inteligencia" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Dados sobre IA</a>
+                    <a href="#sites" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Sites recomendados</a>
+                    <a href="#aulas" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Aulas online</a>
+                    <a href="#simulados" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Simulados</a>
+                    <a href="#orientacoes" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Orientações para IA</a>
+                    <a href="#verificador" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Verificador de sites</a>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    
-    <section id="inicio">
-        <p class="text-white flex justify-center items-center h-full text-8xl mt-35 papapa rounded-lg p-4 text-shadow-md">
-            Tech Juniors
-        </p>
-    </section>
+    <main class="relative z-10">
 
-   
-    <section id="sobre" class="scroll-mt-24">
-        <div class="flex justify-center items-center h-full mt-20">
-            <p class="text-white w-1/2 text-center text-6xl papapa p-4 text-shadow-md">
-                Sobre nós
+        <!-- INÍCIO -->
+        <section id="inicio" class="scroll-mt-24 flex min-h-[65vh] flex-col items-center justify-center px-6 py-24 text-center">
+            <h1 class="font-league text-6xl font-extrabold tracking-wide text-white drop-shadow-md md:text-8xl">Tech Juniors</h1>
+            <p class="mt-3 text-lg text-white md:text-2xl">Conhecimento, inovação e tecnologia para jovens.</p>
+        </section>
+
+        <!-- SOBRE NÓS -->
+        <section id="sobre" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
+            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Sobre nós</h2>
+            <div class="flex flex-col items-center justify-between gap-10 md:flex-row">
+                <p class="w-full text-center text-lg leading-relaxed md:w-1/2 md:text-xl">
+                    Junte-se a nós e faça parte de uma rede de jovens inovadores, compartilhando conhecimento e experiências para impulsionar sua carreira na tecnologia. Explore nossos conteúdos, participe de discussões e descubra como o Tech Juniors pode ajudá-lo a se destacar no mundo digital.
+                </p>
+                <div class="image-placeholder flex h-48 w-full items-center justify-center md:w-2/5" aria-label="Espaço reservado para imagem">Imagem</div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contato" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
+            <h2 class="mb-8 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Contato</h2>
+            <p class="mx-auto max-w-3xl text-center text-lg leading-relaxed md:text-xl">
+                Entre em contato com a nossa comunidade pelo e-mail contato@techjuniors.com.
             </p>
-        </div>
-        <div class="flex justify-center items-center h-full mt-6 pipipi rounded-lg p-4 text-shadow-md">
-            <p class="text-white text-2xl w-1/2 text-center">
-                Junte-se a nós e faça parte de uma rede de jovens inovadores, compartilhando conhecimento e experiências para impulsionar sua carreira na tecnologia. Explore nossos conteúdos, participe de discussões e descubra como o Tech Juniors pode ajudá-lo a se destacar no mundo digital.
-            </p>
-        </div>
-    </section>
+        </section>
 
+        <!-- SERVIÇOS -->
+        <section id="servicos" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
+            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Serviços</h2>
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+                <article class="rounded-xl border border-white/20 bg-white/10 p-7 text-center transition hover:-translate-y-1 hover:bg-white/15">
+                    <h3 class="mb-4 font-league text-3xl font-bold">Mentorias</h3>
+                    <p class="text-base leading-relaxed">Mentorias para ajudar jovens a desenvolver conhecimentos na área de tecnologia.</p>
+                </article>
+                <article class="rounded-xl border border-white/20 bg-white/10 p-7 text-center transition hover:-translate-y-1 hover:bg-white/15">
+                    <h3 class="mb-4 font-league text-3xl font-bold">Workshops</h3>
+                    <p class="text-base leading-relaxed">Workshops práticos e projetos colaborativos para impulsionar seu portfólio.</p>
+                </article>
+            </div>
+        </section>
 
-    <section id="servicos" class="scroll-mt-24 mt-32 mb-20 flex flex-col items-center">
-        <p class="text-white text-center text-6xl papapa p-4 text-shadow-md">
-            Serviços
-        </p>
-        <p class="text-white text-2xl w-1/2 text-center mt-4">
-            Mentorias, workshops práticos e projetos colaborativos para impulsionar seu portfólio.
-        </p>
-    </section>
+        <!-- PRODUTOS -->
+        <section id="produtos" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
+            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Produtos</h2>
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+                <article class="rounded-xl border border-white/20 bg-white/10 p-7 text-center">
+                    <h3 class="mb-4 font-league text-3xl font-bold">Produtos</h3>
+                    <p class="text-base leading-relaxed">Conteúdo e informações sobre os produtos.</p>
+                </article>
+                <article class="rounded-xl border border-white/20 bg-white/10 p-7 text-center">
+                    <h3 class="mb-4 font-league text-3xl font-bold">Conheça mais</h3>
+                    <p class="text-base leading-relaxed">Confira os conteúdos disponíveis.</p>
+                </article>
+            </div>
+            <a href="#" class="mt-8 block text-center text-lg text-[#F1D0A4] underline transition hover:text-white">Link para vendas</a>
+        </section>
 
+        <!-- INTELIGÊNCIA ARTIFICIAL -->
+        <section id="inteligencia" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
+            <h2 class="mb-10 text-center font-league text-5xl font-extrabold leading-tight drop-shadow-md md:text-7xl">Dados sobre a Inteligência Artificial</h2>
+            <div class="flex flex-col items-center gap-8 md:flex-row">
+                <div class="w-full space-y-6 text-center md:w-1/2">
+                    <p class="text-lg leading-relaxed">Informações e conteúdos sobre Inteligência Artificial.</p>
+                    <p class="text-lg leading-relaxed">Conheça mais sobre essa tecnologia e suas aplicações.</p>
+                </div>
+                <div class="image-placeholder flex h-48 w-full items-center justify-center md:w-1/2" aria-label="Espaço reservado para imagem">Imagem</div>
+            </div>
+        </section>
 
-    <section id="contato" class="scroll-mt-24 mt-32 mb-32 flex flex-col items-center">
-        <p class="text-white text-center text-6xl papapa p-4 text-shadow-md">
-            Contato
-        </p>
-        <p class="text-white text-2xl w-1/2 text-center mt-4 pipipi">
-            Entre em contato com a nossa comunidade pelo e-mail contato@techjuniors.com.
-        </p>
-    </section>
+        <!-- SITES RECOMENDADOS -->
+        <section id="sites" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
+            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Sites recomendados</h2>
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+                <article class="text-center"><div class="image-placeholder small-image flex h-28 items-center justify-center">Imagem</div><h3 class="mt-3 font-roboto text-lg">Nome</h3></article>
+                <article class="text-center"><div class="image-placeholder small-image flex h-28 items-center justify-center">Imagem</div><h3 class="mt-3 font-roboto text-lg">Nome</h3></article>
+                <article class="text-center"><div class="image-placeholder small-image flex h-28 items-center justify-center">Imagem</div><h3 class="mt-3 font-roboto text-lg">Nome</h3></article>
+            </div>
+        </section>
 
- 
+        <!-- AULAS ONLINE -->
+        <section id="aulas" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
+            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Aulas online</h2>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Aulas</h3><p>Conteúdo das aulas online.</p></article>
+                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Aulas</h3><p>Conteúdo das aulas online.</p></article>
+                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Aulas</h3><p>Conteúdo das aulas online.</p></article>
+            </div>
+        </section>
+
+        <!-- SIMULADOS -->
+        <section id="simulados" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
+            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Simulados</h2>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Simulado</h3><p>Conteúdo dos simulados.</p></article>
+                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Simulado</h3><p>Conteúdo dos simulados.</p></article>
+                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Simulado</h3><p>Conteúdo dos simulados.</p></article>
+            </div>
+        </section>
+
+        <!-- ORIENTAÇÕES -->
+        <section id="orientacoes" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
+            <h2 class="mb-10 text-center font-league text-5xl font-extrabold leading-tight drop-shadow-md md:text-7xl">Orientações para o uso de IA</h2>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Orientação</h3><p>Informações sobre o uso de IA.</p></article>
+                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Orientação</h3><p>Informações sobre o uso de IA.</p></article>
+                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Orientação</h3><p>Informações sobre o uso de IA.</p></article>
+            </div>
+        </section>
+
+        <!-- VERIFICADOR -->
+        <section id="verificador" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
+            <h2 class="mb-8 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Verificador de sites</h2>
+            <p class="mx-auto max-w-3xl text-center text-lg leading-relaxed">Área destinada à verificação de sites.</p>
+        </section>
+    </main>
+
+    <footer class="relative z-10 bg-[#263C3C] px-6 py-10 text-center">
+        <p class="font-league text-3xl font-bold">Tech Juniors</p>
+        <span class="mt-2 block text-sm">Conhecimento e tecnologia.</span>
+    </footer>
 
     <script src="DB.js"></script>
-     <script src="pesquisa.js"></script>
+    <script src="pesquisa.js"></script>
+    <script>
+        const menuButton = document.getElementById("menu-button");
+        const menuDropdown = document.getElementById("menu-dropdown");
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = !menuDropdown.classList.contains("hidden");
+            menuDropdown.classList.toggle("hidden");
+            menuDropdown.classList.toggle("flex");
+            menuButton.setAttribute("aria-expanded", String(!isOpen));
+        });
+
+        document.querySelectorAll("#menu-dropdown a").forEach(link => {
+            link.addEventListener("click", () => {
+                menuDropdown.classList.add("hidden");
+                menuDropdown.classList.remove("flex");
+                menuButton.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        document.addEventListener("click", event => {
+            if (!event.target.closest("#dropdown-container")) {
+                menuDropdown.classList.add("hidden");
+                menuDropdown.classList.remove("flex");
+                menuButton.setAttribute("aria-expanded", "false");
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-<!-- Adicionar o dropdown com o nome das seções ou IDs -->
