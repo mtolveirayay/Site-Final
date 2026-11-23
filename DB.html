@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-[#5E8271] to-[#33454E] min-h-screen flex items-center justify-center p-4 font-sans antialiased">
+
+  <!-- Tela de Login -->
+  <div id="tela-auth" class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md border-t-4 border-[#9E9C71]">
+    <h2 class="text-2xl font-bold text-[#242739] text-center mb-2">Acessar Conta</h2>
+    <p class="text-sm text-[#33454E] text-center mb-6">Informe seu e-mail e senha para entrar</p>
+
+    <div id="mensagem" class="hidden p-3 rounded-lg mb-4 text-sm font-medium border"></div>
+
+    <form id="form-login" class="space-y-4">
+      <div>
+        <label for="email" class="block text-sm font-medium text-[#242739] mb-1">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          required
+          placeholder="voce@exemplo.com"
+          class="w-full px-3.5 py-2.5 border border-[#9E9C71]/70 rounded-lg text-[#242739] placeholder-[#33454E]/50 focus:outline-none focus:ring-2 focus:ring-[#5E8271] focus:border-[#5E8271]"
+        >
+      </div>
+
+      <div>
+        <label for="senha" class="block text-sm font-medium text-[#242739] mb-1">Senha</label>
+        <input
+          type="password"
+          id="senha"
+          required
+          placeholder="••••••••"
+          class="w-full px-3.5 py-2.5 border border-[#9E9C71]/70 rounded-lg text-[#242739] placeholder-[#33454E]/50 focus:outline-none focus:ring-2 focus:ring-[#5E8271] focus:border-[#5E8271]"
+        >
+      </div>
+
+      <div class="pt-2 space-y-3">
+        <button
+          type="submit"
+          class="w-full py-3 px-4 bg-[#5E8271] hover:bg-[#33454E] text-white font-semibold rounded-lg transition-colors cursor-pointer shadow-sm"
+        >
+          Entrar
+        </button>
+
+        <!-- Botão com href direcionando para a página de cadastro -->
+        <a
+          href="DBcadastrousuario.html"
+          class="block w-full py-3 px-4 bg-[#E6A06F]/30 hover:bg-[#E6A06F]/50 text-[#242739] font-semibold rounded-lg text-center border border-[#E6A06F] transition-colors"
+        >
+          Cadastrar
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Área Logada -->
+  <div id="tela-painel" class="hidden bg-white p-8 rounded-xl shadow-xl w-full max-w-md border-t-4 border-[#9E9C71] text-center">
+    <h2 class="text-2xl font-bold text-[#242739] mb-2">Área Restrita</h2>
+    <p id="boas-vindas" class="text-[#242739] font-medium mb-1"></p>
+    <p id="info-email" class="text-sm text-[#33454E] mb-6"></p>
+
+    <button
+      type="button"
+      id="btn-sair"
+      class="w-full py-3 px-4 bg-[#242739] hover:bg-[#33454E] text-white font-semibold rounded-lg transition-colors cursor-pointer"
+    >
+      Sair da conta
+    </button>
+  </div>
+
+  <script src="DB.js"></script>
+</body>
+</html>
+
+<!-- DB.html -->
