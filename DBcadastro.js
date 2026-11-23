@@ -1,4 +1,4 @@
-const API_URL = window.location.port === '3000' ? '/api' : 'http://localhost:3000/api';
+const API_URL = '/api';
 
 const formCadastro = document.getElementById('form-db-cadastro');
 const mensagemBox = document.getElementById('mensagem');

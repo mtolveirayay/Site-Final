@@ -1,4 +1,4 @@
-const API_URL = window.location.port === '3000' ? '/api' : 'http://localhost:3000/api';
+const API_URL = '/api';
 
 const telaAuth = document.getElementById('tela-auth');
 const telaPainel = document.getElementById('tela-painel');

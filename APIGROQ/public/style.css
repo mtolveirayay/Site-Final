@@ -1,0 +1,202 @@
+:root {
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body.app-shell {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+.app-shell > header {
+    position: relative;
+    z-index: 50;
+    flex: 0 0 auto;
+}
+
+.app-main {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.app-main > section {
+    display: none;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+.app-main > section::-webkit-scrollbar {
+    display: none;
+}
+
+.app-main > section.is-active {
+    display: flex;
+}
+
+.app-main > section[hidden] {
+    display: none !important;
+}
+
+.app-footer {
+    position: relative;
+    z-index: 10;
+    flex: 0 0 auto;
+}
+
+#hud-secoes {
+    position: fixed;
+    top: 50%;
+    right: max(0.5rem, env(safe-area-inset-right));
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(4px, 0.65vh, 8px);
+    width: clamp(42px, 4vw, 54px);
+    max-height: calc(100dvh - 1rem);
+    padding: 0.55rem 0.35rem;
+    overflow: hidden;
+    transform: translateY(-50%);
+    border-radius: 9999px;
+    border: 1px solid rgb(158 156 113 / 60%);
+    background: rgb(36 39 57 / 85%);
+    box-shadow: 0 10px 25px rgb(0 0 0 / 25%);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.hud-arrow {
+    display: grid;
+    flex: 0 0 18px;
+    place-items: center;
+    width: 24px;
+    height: 18px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.hud-arrow svg {
+    width: 18px;
+    height: 18px;
+}
+
+.hud-arrow:disabled {
+    cursor: default;
+    opacity: 0.35;
+    transform: none;
+}
+
+.hud-bolinhas {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(3px, 0.5vh, 5px);
+    max-height: calc(100dvh - 5.5rem);
+    overflow: hidden;
+}
+
+.hud-dot {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: clamp(6px, 1.05vh, 9px);
+    height: clamp(6px, 1.05vh, 9px);
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #9e9c71;
+    cursor: pointer;
+    transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.hud-dot:hover {
+    background: #fff;
+    transform: scale(1.2);
+}
+
+.hud-dot[aria-current="step"] {
+    background: #e6a06f;
+    box-shadow: 0 0 0 3px rgb(230 160 111 / 22%);
+    transform: scale(1.2);
+}
+
+@media (max-height: 380px) {
+    #hud-secoes {
+        gap: 3px;
+        padding-block: 4px;
+    }
+
+    .hud-bolinhas {
+        gap: 2px;
+    }
+
+    .hud-dot {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hud-dot {
+        transition: none;
+    }
+}
+.chat-history-list,
+.chat-messages {
+    scrollbar-width: thin;
+    scrollbar-color: #9e9c71 rgb(36 39 57 / 30%);
+}
+
+.chat-history-list::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-history-list::-webkit-scrollbar-thumb,
+.chat-messages::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background: #9e9c71;
+}
+
+#lista-conversas button:focus-visible,
+#nova-conversa:focus-visible {
+    outline: 2px solid #e6a06f;
+    outline-offset: 2px;
+}
