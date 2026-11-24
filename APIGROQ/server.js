@@ -3,7 +3,7 @@ import Groq from "groq-sdk";
 import dotenv from "dotenv";
 import { DatabaseSync } from "node:sqlite";
 import { randomUUID } from "node:crypto";
-import { mkdirSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -28,7 +28,16 @@ const databasePath = configuredDatabasePath
         : path.resolve(__dirname, configuredDatabasePath))
     : path.join(__dirname, "conversas.db");
 
+const bundledDatabasePath = path.join(__dirname, "conversas.db");
 mkdirSync(path.dirname(databasePath), { recursive: true });
+
+if (
+    path.resolve(databasePath) !== path.resolve(bundledDatabasePath) &&
+    !existsSync(databasePath) &&
+    existsSync(bundledDatabasePath)
+) {
+    copyFileSync(bundledDatabasePath, databasePath);
+}
 
 const database = new DatabaseSync(databasePath);
 database.exec([
