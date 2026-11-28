@@ -15,6 +15,7 @@ No VS Code, depure ``site-Final-main\index.html``. Esse arquivo fica na raiz do 
 Crie o arquivo `APIGROQ/.env` e adicione a variável abaixo para configurar o acesso à API:
 
 ```env
-GROQ_API_KEY=sua_chave_de_api
+GROQ_API_KEY=COLE_SUA_CHAVE_AQUI
 ```
+
 
