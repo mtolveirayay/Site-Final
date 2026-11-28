@@ -33,7 +33,11 @@
             }
 
             if (destino) {
-                destino.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (typeof window.navegarParaId === 'function') {
+                    window.navegarParaId(destino.id);
+                } else {
+                    destino.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
                 campoPesquisa.value = '';
             } else {
              

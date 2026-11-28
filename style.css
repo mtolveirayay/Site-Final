@@ -25,3 +25,11 @@
   font-weight: 400;
   font-style: normal;
 }
+
+/* Justificação de todos os textos de conteúdo do site */
+main p,
+main article p,
+section p {
+  text-align: justify !important;
+  text-justify: inter-word;
+}

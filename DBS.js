@@ -4,11 +4,11 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname));
+app.use(express.static(__dirname));         
 
 const db = new sqlite3.Database('./banco.db', (err) => {
   if (err) {

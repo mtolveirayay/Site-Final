@@ -1,38 +1,42 @@
-const API_URL = '/api';
+const API_URL = window.location.port === '3001' ? '/api' : 'http://localhost:3001/api';
 
-const telaAuth = document.getElementById('tela-auth');
-const telaPainel = document.getElementById('tela-painel');
 const mensagemBox = document.getElementById('mensagem');
 const formLogin = document.getElementById('form-login');
-const btnSair = document.getElementById('btn-sair');
-const boasVindas = document.getElementById('boas-vindas');
-const infoEmail = document.getElementById('info-email');
 
-function mostrarMensagem(texto) {
+function mostrarMensagem(texto, tipo = 'erro') {
   mensagemBox.textContent = texto;
-  mensagemBox.className = 'p-3 rounded-lg mb-4 text-sm font-medium border block bg-red-50 text-red-800 border-red-200';
+  if (tipo === 'sucesso') {
+    mensagemBox.className = 'p-3 rounded-lg mb-4 text-sm font-medium border block bg-emerald-50 text-emerald-800 border-emerald-200';
+  } else {
+    mensagemBox.className = 'p-3 rounded-lg mb-4 text-sm font-medium border block bg-red-50 text-red-800 border-red-200';
+  }
 }
 
-function exibirPainel(usuario) {
-  telaAuth.classList.add('hidden');
-  telaPainel.classList.remove('hidden');
-  boasVindas.textContent = `Olá, ${usuario.nome}!`;
-  infoEmail.textContent = `E-mail conectado: ${usuario.email} (ID #${usuario.id})`;
+// Redireciona o usuário para onde ele tentava ir ou para a página principal
+function redirecionarAposLogin() {
+  const params = new URLSearchParams(window.location.search);
+  const redirect = params.get('redirect');
+
+  if (redirect === 'ia') {
+    window.location.href = 'APIGROQ/public/index.html';
+  } else if (redirect === 'verificador') {
+    window.location.href = 'index.html#verificador';
+  } else {
+    window.location.href = 'index.html';
+  }
 }
 
-btnSair.addEventListener('click', () => {
-  localStorage.removeItem('usuarioLogado');
-  telaPainel.classList.add('hidden');
-  telaAuth.classList.remove('hidden');
-  formLogin.reset();
-  mensagemBox.className = 'hidden';
-});
+// Se o usuário já estiver logado, redireciona diretamente
+const usuarioSalvo = localStorage.getItem('usuarioLogado');
+if (usuarioSalvo) {
+  redirecionarAposLogin();
+}
 
 formLogin.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const payload = {
-    email: document.getElementById('email').value,
+    email: document.getElementById('email').value.trim(),
     senha: document.getElementById('senha').value
   };
 
@@ -50,16 +54,14 @@ formLogin.addEventListener('submit', async (e) => {
       return;
     }
 
+    // Salva o usuário no localStorage para persistir login em todo o site
     localStorage.setItem('usuarioLogado', JSON.stringify(dados.usuario));
-    exibirPainel(dados.usuario);
+    mostrarMensagem('Login realizado com sucesso! Redirecionando...', 'sucesso');
+
+    setTimeout(() => {
+      redirecionarAposLogin();
+    }, 500);
   } catch (err) {
-    mostrarMensagem('Não foi possível conectar ao servidor.');
+    mostrarMensagem('Não foi possível conectar ao servidor. Verifique se o DBS.js está rodando na porta 3001.');
   }
 });
-
-const usuarioSalvo = localStorage.getItem('usuarioLogado');
-if (usuarioSalvo) {
-  exibirPainel(JSON.parse(usuarioSalvo));
-}
-
-// DB.JS

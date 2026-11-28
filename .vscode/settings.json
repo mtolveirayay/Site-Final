@@ -1,0 +1,7 @@
+{
+  "liveServer.settings.ignoreFiles": [
+    "**/*.db*",
+    "**/conversas.db*",
+    "**/banco.db*"
+  ]
+}
