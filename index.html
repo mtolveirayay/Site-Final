@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" class="overflow-hidden scroll-smooth scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Juniors</title>
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <!-- Fontes do slide -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="relative min-h-screen overflow-x-hidden bg-gradient-to-r from-[#5E8271] to-[#33454E] font-roboto text-white">
+<body class="relative h-screen overflow-hidden bg-gradient-to-r from-[#5E8271] to-[#33454E] font-['Roboto',sans-serif] text-white scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
 
-    <!-- CABEÇALHO -->
-    <header class="sticky top-0 z-50 flex min-h-[6vh] w-full flex-wrap items-center justify-between gap-4 bg-[#9E9C71] px-6 py-2 shadow-md">
+    <header class="fixed left-0 top-0 z-50 flex min-h-[6vh] w-full flex-wrap items-center justify-between gap-4 bg-[#9E9C71] px-6 py-2.5 shadow-md">
 
-        <ul class="flex list-none items-center gap-4">
-            <li><a href="DB.html" class="m-1 text-base font-medium text-[#1F2421] transition hover:text-white">Login</a></li>
-            <li><a href="DBcadastrousuario.html" class="m-1 text-base font-medium text-[#1F2421] transition hover:text-white">Criar conta</a></li>
+        <ul id="menu-auth" class="flex list-none items-center gap-4">
+            <li id="item-login"><a href="DB.html" class="m-1 text-base font-medium text-[#242739] transition hover:text-white">Login</a></li>
+            <li id="item-cadastro"><a href="DBcadastrousuario.html" class="m-1 text-base font-medium text-[#242739] transition hover:text-white">Criar conta</a></li>
+            <li id="item-usuario-logado" class="hidden flex items-center gap-3">
+                <span id="label-usuario-nome" class="text-base font-bold text-[#242739]"></span>
+                <button type="button" id="btn-sair-site" class="cursor-pointer rounded-lg bg-[#242739] px-3 py-1 text-xs font-bold text-[#E6A06F] transition hover:bg-white hover:text-[#242739]">Sair</button>
+            </li>
         </ul>
 
         <form id="form-pesquisa" class="flex w-64 items-center rounded-full bg-white px-4 py-2 shadow-sm md:w-80">
@@ -32,189 +30,699 @@
                 id="campo-pesquisa"
                 placeholder="Search"
                 aria-label="Pesquisar seção"
-                class="w-full bg-transparent text-base text-gray-800 outline-none placeholder:text-gray-400"
+                class="w-full bg-transparent text-base text-[#242739] outline-none placeholder:text-[#33454E]/60"
             >
-            <button type="submit" aria-label="Buscar" class="ml-2 cursor-pointer text-[#1F2421] transition hover:opacity-60">
+            <button type="submit" aria-label="Buscar" class="ml-2 cursor-pointer text-[#242739] transition hover:opacity-60">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
                 </svg>
             </button>
         </form>
 
-        <nav class="flex items-center gap-4">
-            <a href="#servicos" class="text-base font-medium text-[#1F2421] transition hover:text-white">Serviços</a>
-            <a href="#sobre" class="text-base font-medium text-[#1F2421] transition hover:text-white">Sobre nós</a>
+        <nav class="flex items-center gap-3 md:gap-4">
+            <!-- Botão Chamativo de Acesso à IA -->
+            <a
+                href="APIGROQ/public/index.html"
+                id="btn-header-ia"
+                title="Acessar Assistente de IA"
+                class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-[#E6A06F] bg-gradient-to-r from-[#242739] via-[#33454E] to-[#242739] px-3.5 py-1.5 text-sm font-bold text-[#E6A06F] shadow-lg shadow-[#242739]/40 transition-all duration-300 hover:scale-105 hover:border-white hover:text-white hover:shadow-xl hover:shadow-[#E6A06F]/30 active:scale-95"
+            >
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#E6A06F] opacity-75"></span>
+                    <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#E6A06F]"></span>
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#E6A06F] transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span class="tracking-wide">Chat IA</span>
+                <span class="rounded bg-[#E6A06F] px-1.5 py-0.5 text-[10px] font-extrabold text-[#242739]">NOVO</span>
+            </a>
+
+            <a href="#servicos" class="text-base font-medium text-[#242739] transition hover:text-white">Serviços</a>
+            <a href="#sobre" class="text-base font-medium text-[#242739] transition hover:text-white">Sobre nós</a>
 
             <div class="relative" id="dropdown-container">
-                <button type="button" id="menu-button" aria-expanded="false" class="cursor-pointer text-base font-medium text-[#1F2421] transition hover:text-white">
+                <button type="button" id="menu-button" aria-expanded="false" class="cursor-pointer text-base font-medium text-[#242739] transition hover:text-white">
                     Menu <span class="ml-1">⌄</span>
                 </button>
 
-                <div id="menu-dropdown" class="absolute right-0 top-9 hidden max-h-[70vh] w-56 flex-col overflow-y-auto rounded-xl bg-[#E5DFBD] p-2 shadow-xl">
-                    <a href="#inicio" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Início</a>
-                    <a href="#sobre" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Sobre nós</a>
-                    <a href="#contato" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Contato</a>
-                    <a href="#servicos" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Serviços</a>
-                    <a href="#produtos" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Produtos</a>
-                    <a href="#inteligencia" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Dados sobre IA</a>
-                    <a href="#sites" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Sites recomendados</a>
-                    <a href="#aulas" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Aulas online</a>
-                    <a href="#simulados" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Simulados</a>
-                    <a href="#orientacoes" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Orientações para IA</a>
-                    <a href="#verificador" class="rounded-md px-3 py-2 text-sm text-[#1F2421] hover:bg-[#9E9C71] hover:text-white">Verificador de sites</a>
+                <div id="menu-dropdown" class="scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none] absolute right-0 top-9 hidden max-h-[70vh] w-56 flex-col overflow-y-auto rounded-xl bg-[#E6A06F] p-2 shadow-xl">
+                    <a href="APIGROQ/public/index.html" class="mb-1 flex items-center justify-between rounded-md bg-[#242739] px-3 py-2 text-sm font-bold text-[#E6A06F] transition hover:bg-black hover:text-white">
+                        <span>⚡ Chat com IA</span>
+                        <span class="rounded bg-[#E6A06F] px-1 py-0.2 text-[9px] font-black text-[#242739]">NOVO</span>
+                    </a>
+                    <a href="#inicio" class="rounded-md px-3 py-2 text-sm font-medium text-[#242739] transition hover:bg-[#242739] hover:text-white">Início</a>
+                    <a href="#sobre" class="rounded-md px-3 py-2 text-sm font-medium text-[#242739] transition hover:bg-[#242739] hover:text-white">Sobre nós</a>
+                    <a href="#contato" class="rounded-md px-3 py-2 text-sm font-medium text-[#242739] transition hover:bg-[#242739] hover:text-white">Contato</a>
+                    <a href="#servicos" class="rounded-md px-3 py-2 text-sm font-medium text-[#242739] transition hover:bg-[#242739] hover:text-white">Serviços</a>
+                    <a href="#produtos" class="rounded-md px-3 py-2 text-sm font-medium text-[#242739] transition hover:bg-[#242739] hover:text-white">Produtos</a>
+                    <a href="#inteligencia" class="rounded-md px-3 py-2 text-sm font-medium text-[#242739] transition hover:bg-[#242739] hover:text-white">Dados sobre IA</a>
+                    <a href="#sites" class="rounded-md px-3 py-2 text-sm font-medium text-[#242739] transition hover:bg-[#242739] hover:text-white">Sites recomendados</a>
+                    <a href="#orientacoes" class="rounded-md px-3 py-2 text-sm font-medium text-[#242739] transition hover:bg-[#242739] hover:text-white">Orientações para IA</a>
+                    <a href="#verificador" class="rounded-md px-3 py-2 text-sm font-medium text-[#242739] transition hover:bg-[#242739] hover:text-white">Verificador de sites</a>
                 </div>
             </div>
         </nav>
     </header>
 
+    <!-- HUD Lateral Sempre Visível -->
+    <div
+        id="hud-secoes"
+        aria-label="Navegação entre seções"
+        style="position: fixed; right: 10px; top: 50%; transform: translateY(-50%); height: 40vh; min-height: 250px; width: 38px; z-index: 9999;"
+        class="flex flex-col items-center justify-between rounded-full border border-[#9E9C71]/70 bg-[#242739]/90 py-2.5 shadow-2xl backdrop-blur-sm"
+    >
+        <button type="button" id="hud-subir" aria-label="Seção anterior" class="cursor-pointer p-1 text-[#E6A06F] transition hover:scale-125 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+            </svg>
+        </button>
+
+        <div id="hud-bolinhas" class="flex flex-col items-center justify-center gap-1.5"></div>
+
+        <button type="button" id="hud-descer" aria-label="Próxima seção" class="cursor-pointer p-1 text-[#E6A06F] transition hover:scale-125 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+        </button>
+    </div>
+
     <main class="relative z-10">
 
-        <!-- INÍCIO -->
-        <section id="inicio" class="scroll-mt-24 flex min-h-[65vh] flex-col items-center justify-center px-6 py-24 text-center">
-            <h1 class="font-league text-6xl font-extrabold tracking-wide text-white drop-shadow-md md:text-8xl">Tech Juniors</h1>
-            <p class="mt-3 text-lg text-white md:text-2xl">Conhecimento, inovação e tecnologia para jovens.</p>
-        </section>
-
-        <!-- SOBRE NÓS -->
-        <section id="sobre" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
-            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Sobre nós</h2>
-            <div class="flex flex-col items-center justify-between gap-10 md:flex-row">
-                <p class="w-full text-center text-lg leading-relaxed md:w-1/2 md:text-xl">
-                    Junte-se a nós e faça parte de uma rede de jovens inovadores, compartilhando conhecimento e experiências para impulsionar sua carreira na tecnologia. Explore nossos conteúdos, participe de discussões e descubra como o Tech Juniors pode ajudá-lo a se destacar no mundo digital.
+        <section id="inicio" class="h-screen w-full overflow-y-auto overscroll-y-contain scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+            <div data-animar class="flex min-h-[120vh] flex-col items-center justify-center px-6 pt-24 pb-16 text-center">
+                <h1 class="font-['League_Spartan',sans-serif] text-6xl font-extrabold tracking-wide text-white drop-shadow-md md:text-8xl">AI Control</h1>
+                <p class="mt-3 text-lg font-medium text-[#E6A06F] md:text-2xl">Tech*Júniors</p>
+                <p class="mt-8 inline-flex items-center gap-2 rounded-full border border-[#9E9C71]/50 bg-[#242739]/60 px-4 py-1.5 text-xs font-medium text-white/85 shadow-sm md:text-sm">
+                    Oriente-se pela interface à direita
+                    <span class="text-[#E6A06F]">→</span>
                 </p>
-                <div class="image-placeholder flex h-48 w-full items-center justify-center md:w-2/5" aria-label="Espaço reservado para imagem">Imagem</div>
             </div>
         </section>
 
-        <!-- CONTATO -->
-        <section id="contato" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
-            <h2 class="mb-8 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Contato</h2>
-            <p class="mx-auto max-w-3xl text-center text-lg leading-relaxed md:text-xl">
-                Entre em contato com a nossa comunidade pelo e-mail contato@techjuniors.com.
-            </p>
-        </section>
-
-        <!-- SERVIÇOS -->
-        <section id="servicos" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
-            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Serviços</h2>
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-                <article class="rounded-xl border border-white/20 bg-white/10 p-7 text-center transition hover:-translate-y-1 hover:bg-white/15">
-                    <h3 class="mb-4 font-league text-3xl font-bold">Mentorias</h3>
-                    <p class="text-base leading-relaxed">Mentorias para ajudar jovens a desenvolver conhecimentos na área de tecnologia.</p>
-                </article>
-                <article class="rounded-xl border border-white/20 bg-white/10 p-7 text-center transition hover:-translate-y-1 hover:bg-white/15">
-                    <h3 class="mb-4 font-league text-3xl font-bold">Workshops</h3>
-                    <p class="text-base leading-relaxed">Workshops práticos e projetos colaborativos para impulsionar seu portfólio.</p>
-                </article>
-            </div>
-        </section>
-
-        <!-- PRODUTOS -->
-        <section id="produtos" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
-            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Produtos</h2>
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-                <article class="rounded-xl border border-white/20 bg-white/10 p-7 text-center">
-                    <h3 class="mb-4 font-league text-3xl font-bold">Produtos</h3>
-                    <p class="text-base leading-relaxed">Conteúdo e informações sobre os produtos.</p>
-                </article>
-                <article class="rounded-xl border border-white/20 bg-white/10 p-7 text-center">
-                    <h3 class="mb-4 font-league text-3xl font-bold">Conheça mais</h3>
-                    <p class="text-base leading-relaxed">Confira os conteúdos disponíveis.</p>
-                </article>
-            </div>
-            <a href="#" class="mt-8 block text-center text-lg text-[#F1D0A4] underline transition hover:text-white">Link para vendas</a>
-        </section>
-
-        <!-- INTELIGÊNCIA ARTIFICIAL -->
-        <section id="inteligencia" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
-            <h2 class="mb-10 text-center font-league text-5xl font-extrabold leading-tight drop-shadow-md md:text-7xl">Dados sobre a Inteligência Artificial</h2>
-            <div class="flex flex-col items-center gap-8 md:flex-row">
-                <div class="w-full space-y-6 text-center md:w-1/2">
-                    <p class="text-lg leading-relaxed">Informações e conteúdos sobre Inteligência Artificial.</p>
-                    <p class="text-lg leading-relaxed">Conheça mais sobre essa tecnologia e suas aplicações.</p>
+        <section id="sobre" class="h-screen w-full overflow-y-auto overscroll-y-contain scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+            <div data-animar class="mx-auto flex min-h-[120vh] max-w-4xl flex-col justify-center px-6 pt-24 pb-16 md:px-12">
+                <h2 class="mb-10 text-center font-['League_Spartan',sans-serif] text-5xl font-extrabold drop-shadow-md md:text-7xl">Sobre nós</h2>
+                <div class="mx-auto w-full space-y-6 text-justify text-lg leading-relaxed md:text-xl">
+                    <p class="text-justify">
+                        O <strong>AI Control</strong> é um projeto desenvolvido pela <strong>TechJuniors Company</strong> com o objetivo de apoiar jovens e estudantes que desenvolveram dependência das Inteligências Artificiais generativas no cotidiano.
+                    </p>
+                    <p class="text-justify">
+                        Apresentamos métodos de estudo eficazes e seguros para fortalecer a criatividade, o raciocínio lógico e a autonomia digital, alertando com dados científicos sobre os riscos do uso excessivo da IA.
+                    </p>
                 </div>
-                <div class="image-placeholder flex h-48 w-full items-center justify-center md:w-1/2" aria-label="Espaço reservado para imagem">Imagem</div>
             </div>
         </section>
 
-        <!-- SITES RECOMENDADOS -->
-        <section id="sites" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
-            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Sites recomendados</h2>
-            <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
-                <article class="text-center"><div class="image-placeholder small-image flex h-28 items-center justify-center">Imagem</div><h3 class="mt-3 font-roboto text-lg">Nome</h3></article>
-                <article class="text-center"><div class="image-placeholder small-image flex h-28 items-center justify-center">Imagem</div><h3 class="mt-3 font-roboto text-lg">Nome</h3></article>
-                <article class="text-center"><div class="image-placeholder small-image flex h-28 items-center justify-center">Imagem</div><h3 class="mt-3 font-roboto text-lg">Nome</h3></article>
+        <section id="contato" class="h-screen w-full overflow-y-auto overscroll-y-contain scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+            <div data-animar class="mx-auto flex min-h-[120vh] max-w-6xl flex-col justify-center px-6 pt-24 pb-16 md:px-12">
+                <h2 class="mb-8 text-center font-['League_Spartan',sans-serif] text-5xl font-extrabold drop-shadow-md md:text-7xl">Contato</h2>
+                <div class="mx-auto grid w-full max-w-3xl grid-cols-1 gap-4 rounded-xl border border-[#9E9C71]/40 bg-[#242739]/60 p-8 text-center text-lg sm:grid-cols-2">
+                    <p><strong class="text-[#E6A06F]">E-mail:</strong> TechJ@gmail.com</p>
+                    <p><strong class="text-[#E6A06F]">X:</strong> @techj_oficial</p>
+                    <p><strong class="text-[#E6A06F]">WhatsApp:</strong> +55 (71) 9 5967-XXXX</p>
+                    <p><strong class="text-[#E6A06F]">Instagram:</strong> @techj.oficial</p>
+                </div>
             </div>
         </section>
 
-        <!-- AULAS ONLINE -->
-        <section id="aulas" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
-            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Aulas online</h2>
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Aulas</h3><p>Conteúdo das aulas online.</p></article>
-                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Aulas</h3><p>Conteúdo das aulas online.</p></article>
-                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Aulas</h3><p>Conteúdo das aulas online.</p></article>
+        <section id="servicos" class="h-screen w-full overflow-y-auto overscroll-y-contain scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+            <div data-animar class="mx-auto flex min-h-[120vh] max-w-6xl flex-col justify-center px-6 pt-24 pb-16 md:px-12">
+                <h2 class="mb-10 text-center font-['League_Spartan',sans-serif] text-5xl font-extrabold drop-shadow-md md:text-7xl">Serviços</h2>
+                <div class="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
+                    <article class="rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-7 transition duration-200 hover:-translate-y-1 hover:border-[#E6A06F]">
+                        <h3 class="mb-4 text-center font-['League_Spartan',sans-serif] text-3xl font-bold text-[#E6A06F]">Estudos Eficazes</h3>
+                        <p class="text-justify text-base leading-relaxed">Métodos de estudo seguros e práticos para ajudar jovens a realizar tarefas acadêmicas sem depender de respostas prontas da IA.</p>
+                    </article>
+                    <article class="rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-7 transition duration-200 hover:-translate-y-1 hover:border-[#E6A06F]">
+                        <h3 class="mb-4 text-center font-['League_Spartan',sans-serif] text-3xl font-bold text-[#E6A06F]">Suporte e Orientação</h3>
+                        <p class="text-justify text-base leading-relaxed">Apoio informativo baseado em evidências científicas sobre os impactos do uso excessivo da Inteligência Artificial no cérebro e no aprendizado.</p>
+                    </article>
+                </div>
+                
+                <!-- Botão Chamativo de Acesso à IA (CTA) -->
+                <div class="mt-10 flex justify-center">
+                    <a
+                        href="APIGROQ/public/index.html"
+                        class="group relative inline-flex items-center gap-4 overflow-hidden rounded-2xl border-2 border-[#E6A06F] bg-gradient-to-r from-[#242739] via-[#33454E] to-[#242739] px-8 py-4 text-base font-bold text-[#E6A06F] shadow-2xl shadow-[#242739]/50 transition-all duration-300 hover:scale-105 hover:border-white hover:text-white hover:shadow-[#E6A06F]/40 active:scale-95"
+                    >
+                        <div class="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#E6A06F] text-[#242739] shadow-md transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">
+                            <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#242739] opacity-75"></span>
+                                <span class="relative inline-flex h-3 w-3 rounded-full bg-[#242739]"></span>
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <span class="block text-xs uppercase tracking-wider text-[#E6A06F]/80 group-hover:text-white/80">Tire dúvidas de estudo 24 horas</span>
+                            <span class="text-lg font-extrabold tracking-wide sm:text-xl">Acessar o Assistente de IA</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#E6A06F] transition-transform duration-300 group-hover:translate-x-1.5 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <!-- SIMULADOS -->
-        <section id="simulados" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
-            <h2 class="mb-10 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Simulados</h2>
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Simulado</h3><p>Conteúdo dos simulados.</p></article>
-                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Simulado</h3><p>Conteúdo dos simulados.</p></article>
-                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Simulado</h3><p>Conteúdo dos simulados.</p></article>
+        <section id="produtos" class="h-screen w-full overflow-y-auto overscroll-y-contain scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+            <div data-animar class="mx-auto flex min-h-[120vh] max-w-6xl flex-col justify-center px-6 pt-24 pb-16 md:px-12">
+                <h2 class="mb-10 text-center font-['League_Spartan',sans-serif] text-5xl font-extrabold drop-shadow-md md:text-7xl">Produtos</h2>
+                <div class="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
+                    <article class="rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-7 transition duration-200 hover:-translate-y-1 hover:border-[#E6A06F]">
+                        <h3 class="mb-4 text-center font-['League_Spartan',sans-serif] text-3xl font-bold text-[#E6A06F]">Plataforma AI Control</h3>
+                        <p class="text-justify text-base leading-relaxed">Ferramentas de verificação de fontes, simulados e trilhas de aprendizado para desenvolver autonomia intelectual.</p>
+                    </article>
+                    <article class="flex flex-col justify-between rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-7 transition duration-200 hover:-translate-y-1 hover:border-[#E6A06F]">
+                        <div>
+                            <h3 class="mb-4 text-center font-['League_Spartan',sans-serif] text-3xl font-bold text-[#E6A06F]">Chat com Inteligência Artificial</h3>
+                            <p class="text-justify text-base leading-relaxed">Assistente inteligente criado para te orientar e ajudar você a saber exatamente por onde começar seus estudos.</p>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <a href="APIGROQ/public/index.html" class="inline-flex items-center gap-2 rounded-xl bg-[#E6A06F] px-5 py-2.5 text-sm font-bold text-[#242739] shadow-md transition hover:bg-white hover:scale-105 active:scale-95">
+                                <span>Abrir chat agora</span>
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 
-        <!-- ORIENTAÇÕES -->
-        <section id="orientacoes" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
-            <h2 class="mb-10 text-center font-league text-5xl font-extrabold leading-tight drop-shadow-md md:text-7xl">Orientações para o uso de IA</h2>
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Orientação</h3><p>Informações sobre o uso de IA.</p></article>
-                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Orientação</h3><p>Informações sobre o uso de IA.</p></article>
-                <article class="rounded-xl bg-white/10 p-6 text-center"><h3 class="mb-3 font-league text-2xl font-bold">Orientação</h3><p>Informações sobre o uso de IA.</p></article>
+        <section id="inteligencia" class="h-screen w-full overflow-y-auto overscroll-y-contain scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+            <div data-animar class="mx-auto flex min-h-[120vh] max-w-4xl flex-col justify-center px-6 pt-24 pb-16 md:px-12">
+                <h2 class="mb-10 text-center font-['League_Spartan',sans-serif] text-5xl font-extrabold leading-tight drop-shadow-md md:text-7xl">Dados sobre a Inteligência Artificial</h2>
+                <div class="mx-auto w-full space-y-6 text-justify text-lg leading-relaxed md:text-xl">
+                    <p class="text-justify">Pesquisas mostram que <strong>63% dos brasileiros</strong> já usam IA para escrever mensagens pessoais (IT Forum) e <strong>50%</strong> a preferem antes de outras pessoas para decisões importantes (Visão Hospitalar).</p>
+                    <p class="text-justify">Na educação, <strong>30% dos jovens</strong> usuários do ChatGPT recorrem à ferramenta exclusivamente para tarefas acadêmicas, entregando trabalhos sem compreender os conceitos (UFSM e CNN Brasil).</p>
+                </div>
             </div>
         </section>
 
-        <!-- VERIFICADOR -->
-        <section id="verificador" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 md:px-12">
-            <h2 class="mb-8 text-center font-league text-5xl font-extrabold drop-shadow-md md:text-7xl">Verificador de sites</h2>
-            <p class="mx-auto max-w-3xl text-center text-lg leading-relaxed">Área destinada à verificação de sites.</p>
+        <section id="sites" class="h-screen w-full overflow-y-auto overscroll-y-contain scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+            <div data-animar class="mx-auto flex min-h-[120vh] max-w-6xl flex-col justify-center px-6 pt-24 pb-16 md:px-12">
+                <h2 id="titulo-sites" class="mb-3 text-center font-['League_Spartan',sans-serif] text-5xl font-extrabold drop-shadow-md md:text-7xl">Sites recomendados</h2>
+
+                <div class="mb-8 text-center">
+                    <button type="button" id="btn-alternar-sites" class="cursor-pointer rounded-full border border-[#E6A06F] bg-[#242739]/70 px-5 py-2 text-sm font-bold text-[#E6A06F] transition hover:bg-[#E6A06F] hover:text-[#242739]">
+                        Canais do YouTube recomendados
+                    </button>
+                </div>
+
+                <div id="lista-sites" class="mx-auto flex w-full max-w-3xl flex-col gap-5">
+                    <div class="flex flex-col items-center justify-between gap-4 rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-4 transition duration-200 hover:-translate-y-1 hover:border-[#E6A06F] sm:flex-row">
+                        <div class="flex items-center gap-4">
+                            <img src="https://www.google.com/s2/favicons?domain=brasilescola.uol.com.br&sz=128" alt="Logo Brasil Escola" class="h-14 w-14 rounded-xl bg-white object-contain p-2 shadow-sm">
+                            <div class="text-left">
+                                <h3 class="font-['League_Spartan',sans-serif] text-2xl font-bold text-white">Brasil Escola</h3>
+                                <a href="https://brasilescola.uol.com.br" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-[#E6A06F] underline transition hover:text-white">https://brasilescola.uol.com.br</a>
+                            </div>
+                        </div>
+                        <a href="https://brasilescola.uol.com.br" target="_blank" rel="noopener noreferrer" class="rounded-lg bg-[#E6A06F] px-5 py-2.5 text-sm font-bold text-[#242739] transition hover:bg-[#9E9C71] hover:text-white">Acessar</a>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-between gap-4 rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-4 transition duration-200 hover:-translate-y-1 hover:border-[#E6A06F] sm:flex-row">
+                        <div class="flex items-center gap-4">
+                            <img src="https://www.google.com/s2/favicons?domain=todamateria.com.br&sz=128" alt="Logo Toda Matéria" class="h-14 w-14 rounded-xl bg-white object-contain p-2 shadow-sm">
+                            <div class="text-left">
+                                <h3 class="font-['League_Spartan',sans-serif] text-2xl font-bold text-white">Toda Matéria</h3>
+                                <a href="https://www.todamateria.com.br" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-[#E6A06F] underline transition hover:text-white">https://www.todamateria.com.br</a>
+                            </div>
+                        </div>
+                        <a href="https://www.todamateria.com.br" target="_blank" rel="noopener noreferrer" class="rounded-lg bg-[#E6A06F] px-5 py-2.5 text-sm font-bold text-[#242739] transition hover:bg-[#9E9C71] hover:text-white">Acessar</a>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-between gap-4 rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-4 transition duration-200 hover:-translate-y-1 hover:border-[#E6A06F] sm:flex-row">
+                        <div class="flex items-center gap-4">
+                            <img src="https://www.google.com/s2/favicons?domain=pt.khanacademy.org&sz=128" alt="Logo Khan Academy" class="h-14 w-14 rounded-xl bg-white object-contain p-2 shadow-sm">
+                            <div class="text-left">
+                                <h3 class="font-['League_Spartan',sans-serif] text-2xl font-bold text-white">Khan Academy</h3>
+                                <a href="https://pt.khanacademy.org" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-[#E6A06F] underline transition hover:text-white">https://pt.khanacademy.org</a>
+                            </div>
+                        </div>
+                        <a href="https://pt.khanacademy.org" target="_blank" rel="noopener noreferrer" class="rounded-lg bg-[#E6A06F] px-5 py-2.5 text-sm font-bold text-[#242739] transition hover:bg-[#9E9C71] hover:text-white">Acessar</a>
+                    </div>
+                </div>
+
+                <div id="lista-canais" class="mx-auto hidden w-full max-w-3xl flex-col gap-5">
+                    <div class="flex flex-col items-center justify-between gap-4 rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-4 transition duration-200 hover:-translate-y-1 hover:border-[#E6A06F] sm:flex-row">
+                        <div class="flex items-center gap-4">
+                            <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="Logo YouTube" class="h-14 w-14 shrink-0 rounded-xl bg-white object-contain p-2 shadow-sm">
+                            <div class="text-left">
+                                <h3 class="font-['League_Spartan',sans-serif] text-2xl font-bold text-white">Universo Narrado</h3>
+                                <p class="text-sm text-white/85">Uma das melhores escolas brasileiras de Matemática e Física</p>
+                                <div class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs font-medium">
+                                    <a href="https://www.youtube.com/@UniversoNarrado" target="_blank" rel="noopener noreferrer" class="text-[#E6A06F] underline transition hover:text-white">https://www.youtube.com/@UniversoNarrado</a>
+                                    <a href="https://universonarrado.com.br/" target="_blank" rel="noopener noreferrer" class="text-[#9E9C71] underline transition hover:text-white">Matrícula: https://universonarrado.com.br/</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://www.youtube.com/@UniversoNarrado" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-lg bg-[#E6A06F] px-5 py-2.5 text-sm font-bold text-[#242739] transition hover:bg-[#9E9C71] hover:text-white">Acessar</a>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-between gap-4 rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-4 transition duration-200 hover:-translate-y-1 hover:border-[#E6A06F] sm:flex-row">
+                        <div class="flex items-center gap-4">
+                            <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="Logo YouTube" class="h-14 w-14 shrink-0 rounded-xl bg-white object-contain p-2 shadow-sm">
+                            <div class="text-left">
+                                <h3 class="font-['League_Spartan',sans-serif] text-2xl font-bold text-white">Pedro Assaad</h3>
+                                <p class="text-sm text-white/85">Conteúdos gerais</p>
+                                <div class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs font-medium">
+                                    <a href="https://www.youtube.com/@PedroAssaad" target="_blank" rel="noopener noreferrer" class="text-[#E6A06F] underline transition hover:text-white">https://www.youtube.com/@PedroAssaad</a>
+                                    <a href="https://plataformaassaad.com.br/plataforma-assaad/" target="_blank" rel="noopener noreferrer" class="text-[#9E9C71] underline transition hover:text-white">Plataforma: https://plataformaassaad.com.br/plataforma-assaad/</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://www.youtube.com/@PedroAssaad" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-lg bg-[#E6A06F] px-5 py-2.5 text-sm font-bold text-[#242739] transition hover:bg-[#9E9C71] hover:text-white">Acessar</a>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-between gap-4 rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-4 transition duration-200 hover:-translate-y-1 hover:border-[#E6A06F] sm:flex-row">
+                        <div class="flex items-center gap-4">
+                            <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="Logo YouTube" class="h-14 w-14 shrink-0 rounded-xl bg-white object-contain p-2 shadow-sm">
+                            <div class="text-left">
+                                <h3 class="font-['League_Spartan',sans-serif] text-2xl font-bold text-white">Noslen</h3>
+                                <div class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs font-medium">
+                                    <a href="https://www.youtube.com/@ProfessorNoslen" target="_blank" rel="noopener noreferrer" class="text-[#E6A06F] underline transition hover:text-white">https://www.youtube.com/@ProfessorNoslen</a>
+                                    <a href="https://professornoslen.com.br/concursos/" target="_blank" rel="noopener noreferrer" class="text-[#9E9C71] underline transition hover:text-white">Plataforma: https://professornoslen.com.br/concursos/</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://www.youtube.com/@ProfessorNoslen" target="_blank" rel="noopener noreferrer" class="shrink-0 rounded-lg bg-[#E6A06F] px-5 py-2.5 text-sm font-bold text-[#242739] transition hover:bg-[#9E9C71] hover:text-white">Acessar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="orientacoes" class="h-screen w-full overflow-y-auto overscroll-y-contain scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+            <div data-animar class="mx-auto flex min-h-[120vh] max-w-6xl flex-col justify-center px-6 pt-24 pb-16 md:px-12">
+                <h2 class="mb-10 text-center font-['League_Spartan',sans-serif] text-5xl font-extrabold leading-tight drop-shadow-md md:text-7xl">Orientações para o uso de IA</h2>
+                <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+                    <article class="rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-6 transition duration-200 hover:-translate-y-1">
+                        <h3 class="mb-3 text-center font-['League_Spartan',sans-serif] text-2xl font-bold text-[#E6A06F]">Use como Apoio</h3>
+                        <p class="text-justify text-base leading-relaxed">Peça explicações para tirar dúvidas, mas escreva suas respostas com suas próprias palavras.</p>
+                    </article>
+                    <article class="rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-6 transition duration-200 hover:-translate-y-1">
+                        <h3 class="mb-3 text-center font-['League_Spartan',sans-serif] text-2xl font-bold text-[#E6A06F]">Cheque as Fontes</h3>
+                        <p class="text-justify text-base leading-relaxed">Sempre confirme dados e citações em portais oficiais e artigos científicos.</p>
+                    </article>
+                    <article class="rounded-xl border border-[#9E9C71]/40 bg-[#242739]/55 p-6 transition duration-200 hover:-translate-y-1">
+                        <h3 class="mb-3 text-center font-['League_Spartan',sans-serif] text-2xl font-bold text-[#E6A06F]">Preserve Decisões</h3>
+                        <p class="text-justify text-base leading-relaxed">Evite delegar escolhas pessoais importantes e conversas humanas para algoritmos.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="verificador" class="h-screen w-full overflow-y-auto overscroll-y-contain scrollbar-none [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+            <div data-animar class="flex min-h-[120vh] flex-col justify-between pt-24">
+                <div class="mx-auto my-auto w-full max-w-6xl px-6 py-12 md:px-12">
+                    <h2 class="mb-8 text-center font-['League_Spartan',sans-serif] text-5xl font-extrabold drop-shadow-md md:text-7xl">Verificador de sites</h2>
+                    <p class="mx-auto max-w-3xl text-justify text-lg leading-relaxed">Cole o endereço de um site abaixo para conferir se possui conexão segura e domínio confiável para pesquisa.</p>
+
+                    <!-- Bloqueio para usuários não autenticados -->
+                    <div id="verificador-bloqueado" class="mx-auto mt-8 hidden max-w-2xl rounded-2xl border-2 border-dashed border-[#E6A06F] bg-[#242739]/90 p-8 text-center shadow-xl">
+                        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#E6A06F]/20 text-3xl">
+                            🔒
+                        </div>
+                        <h3 class="mb-2 font-['League_Spartan',sans-serif] text-2xl font-bold text-[#E6A06F]">Acesso Exclusivo para Usuários</h3>
+                        <p class="mb-6 text-sm text-justify leading-relaxed text-white/90 sm:text-base">
+                            O Verificador de Sites é uma ferramenta de pesquisa exclusiva. Faça login na sua conta para verificar a segurança e confiabilidade de fontes online.
+                        </p>
+                        <div class="flex flex-wrap items-center justify-center gap-4">
+                            <a href="DB.html?redirect=verificador" class="rounded-xl bg-[#E6A06F] px-6 py-3 font-bold text-[#242739] shadow-md transition hover:bg-[#9E9C71] hover:text-white">
+                                Fazer Login
+                            </a>
+                            <a href="DBcadastrousuario.html" class="rounded-xl border border-white/30 bg-white/10 px-6 py-3 font-bold text-white transition hover:bg-white/20">
+                                Criar Conta
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Formulário ativo para usuários autenticados -->
+                    <form id="form-verificador" class="mx-auto mt-8 flex w-full max-w-2xl flex-col gap-3 sm:flex-row">
+                        <input
+                            type="text"
+                            id="input-url-verificador"
+                            placeholder="Ex: https://www.scielo.br"
+                            aria-label="Endereço do site"
+                            class="w-full rounded-xl bg-white px-4 py-3 text-[#242739] outline-none placeholder:text-[#33454E]/60 focus:ring-2 focus:ring-[#E6A06F]"
+                        >
+                        <button type="submit" class="cursor-pointer rounded-xl bg-[#E6A06F] px-6 py-3 font-bold text-[#242739] transition hover:bg-[#9E9C71] hover:text-white">
+                            Verificar
+                        </button>
+                    </form>
+
+                    <div id="resultado-verificador" class="mx-auto mt-4 hidden w-full max-w-2xl rounded-xl border p-4 text-center text-base"></div>
+                </div>
+
+                <footer class="w-full bg-[#242739] px-6 py-10 text-center">
+                    <p class="font-['League_Spartan',sans-serif] text-3xl font-bold">Tech*Júniors</p>
+                    <span class="mt-2 block text-sm text-[#9E9C71]">AI Control • Conhecimento e tecnologia.</span>
+                </footer>
+            </div>
         </section>
     </main>
 
-    <footer class="relative z-10 bg-[#263C3C] px-6 py-10 text-center">
-        <p class="font-league text-3xl font-bold">Tech Juniors</p>
-        <span class="mt-2 block text-sm">Conhecimento e tecnologia.</span>
-    </footer>
-
-    <script src="DB.js"></script>
     <script src="pesquisa.js"></script>
     <script>
-        const menuButton = document.getElementById("menu-button");
-        const menuDropdown = document.getElementById("menu-dropdown");
+        document.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo(0, 0);
 
-        menuButton.addEventListener("click", () => {
-            const isOpen = !menuDropdown.classList.contains("hidden");
-            menuDropdown.classList.toggle("hidden");
-            menuDropdown.classList.toggle("flex");
-            menuButton.setAttribute("aria-expanded", String(!isOpen));
-        });
+            const todasSecoes = Array.from(document.querySelectorAll('main section'));
+            let secaoAtualIndex = 0;
 
-        document.querySelectorAll("#menu-dropdown a").forEach(link => {
-            link.addEventListener("click", () => {
-                menuDropdown.classList.add("hidden");
-                menuDropdown.classList.remove("flex");
-                menuButton.setAttribute("aria-expanded", "false");
+            // Permite scroll interno apenas na seção atual e bloqueia passagem para outras seções
+            window.addEventListener('wheel', (e) => {
+                const secaoAtiva = todasSecoes[secaoAtualIndex];
+                if (!secaoAtiva || !secaoAtiva.contains(e.target)) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const noTopo = secaoAtiva.scrollTop <= 0 && e.deltaY < 0;
+                const noFundo = secaoAtiva.scrollTop + secaoAtiva.clientHeight >= secaoAtiva.scrollHeight - 1 && e.deltaY > 0;
+                if (noTopo || noFundo) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            let toqueInicialY = 0;
+            window.addEventListener('touchstart', (e) => {
+                if (e.touches.length > 0) {
+                    toqueInicialY = e.touches[0].clientY;
+                }
+            }, { passive: true });
+
+            window.addEventListener('touchmove', (e) => {
+                const secaoAtiva = todasSecoes[secaoAtualIndex];
+                if (!secaoAtiva || !secaoAtiva.contains(e.target)) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const toqueAtualY = e.touches[0].clientY;
+                const subindo = toqueAtualY > toqueInicialY;
+                const descendo = toqueAtualY < toqueInicialY;
+                const noTopo = secaoAtiva.scrollTop <= 0 && subindo;
+                const noFundo = secaoAtiva.scrollTop + secaoAtiva.clientHeight >= secaoAtiva.scrollHeight - 1 && descendo;
+
+                if (noTopo || noFundo) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            window.addEventListener('keydown', (e) => {
+                const alvo = e.target;
+                const digitando = alvo && (alvo.tagName === 'INPUT' || alvo.tagName === 'TEXTAREA' || alvo.isContentEditable);
+                if (digitando) return;
+
+                const secaoAtiva = todasSecoes[secaoAtualIndex];
+                const teclasScroll = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '];
+                if (teclasScroll.includes(e.key)) {
+                    e.preventDefault();
+                    if (!secaoAtiva) return;
+
+                    const passo = e.key === 'ArrowDown' ? 80 : e.key === 'ArrowUp' ? -80 : e.key === 'PageDown' || e.key === ' ' ? 300 : e.key === 'PageUp' ? -300 : 0;
+                    if (e.key === 'Home') {
+                        secaoAtiva.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else if (e.key === 'End') {
+                        secaoAtiva.scrollTo({ top: secaoAtiva.scrollHeight, behavior: 'smooth' });
+                    } else {
+                        secaoAtiva.scrollBy({ top: passo, behavior: 'smooth' });
+                    }
+                }
             });
-        });
 
-        document.addEventListener("click", event => {
-            if (!event.target.closest("#dropdown-container")) {
-                menuDropdown.classList.add("hidden");
-                menuDropdown.classList.remove("flex");
-                menuButton.setAttribute("aria-expanded", "false");
+            // Controle de troca de seções e navegação
+            const hudBolinhas = document.getElementById('hud-bolinhas');
+            const hudSubir = document.getElementById('hud-subir');
+            const hudDescer = document.getElementById('hud-descer');
+
+            function atualizarBolinhaAtiva(index) {
+                secaoAtualIndex = index;
+                if (!hudBolinhas) return;
+                const bolinhas = hudBolinhas.querySelectorAll('button');
+                bolinhas.forEach((bolinha, i) => {
+                    if (i === index) {
+                        bolinha.style.backgroundColor = '#E6A06F';
+                        bolinha.style.transform = 'scale(1.3)';
+                    } else {
+                        bolinha.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                        bolinha.style.transform = 'scale(1)';
+                    }
+                });
+            }
+
+            function irParaSecao(index) {
+                if (index < 0 || index >= todasSecoes.length) return;
+                atualizarBolinhaAtiva(index);
+                todasSecoes[index].scrollTop = 0;
+                todasSecoes[index].scrollIntoView({ behavior: 'smooth' });
+            }
+
+            function navegarParaId(id) {
+                const index = todasSecoes.findIndex((s) => s.id === id);
+                if (index !== -1) {
+                    irParaSecao(index);
+                }
+            }
+
+            // Disponibiliza função de navegação globalmente para outros scripts (como pesquisa.js)
+            window.navegarParaId = navegarParaId;
+
+            // Inicializa as bolinhas do HUD lateral
+            if (hudBolinhas && todasSecoes.length > 0) {
+                hudBolinhas.innerHTML = '';
+                todasSecoes.forEach((_, index) => {
+                    const bolinha = document.createElement('button');
+                    bolinha.type = 'button';
+                    bolinha.ariaLabel = `Ir para seção ${index + 1}`;
+                    bolinha.style.width = '8px';
+                    bolinha.style.height = '8px';
+                    bolinha.style.borderRadius = '9999px';
+                    bolinha.style.cursor = 'pointer';
+                    bolinha.style.transition = 'all 0.2s ease';
+                    bolinha.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+
+                    bolinha.addEventListener('click', () => {
+                        irParaSecao(index);
+                    });
+
+                    hudBolinhas.appendChild(bolinha);
+                });
+
+                atualizarBolinhaAtiva(0);
+
+                if (hudSubir) {
+                    hudSubir.addEventListener('click', () => {
+                        irParaSecao(secaoAtualIndex - 1);
+                    });
+                }
+
+                if (hudDescer) {
+                    hudDescer.addEventListener('click', () => {
+                        irParaSecao(secaoAtualIndex + 1);
+                    });
+                }
+            }
+
+            // Menu Dropdown funcional
+            const menuButton = document.getElementById('menu-button');
+            const menuDropdown = document.getElementById('menu-dropdown');
+
+            if (menuButton && menuDropdown) {
+                menuButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = !menuDropdown.classList.contains('hidden');
+                    menuDropdown.classList.toggle('hidden');
+                    menuDropdown.classList.toggle('flex');
+                    menuButton.setAttribute('aria-expanded', String(!isOpen));
+                });
+
+                document.addEventListener('click', (event) => {
+                    if (!event.target.closest('#dropdown-container')) {
+                        menuDropdown.classList.add('hidden');
+                        menuDropdown.classList.remove('flex');
+                        menuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // Navegação ao clicar nos links internos (Menu Dropdown e links da Navbar)
+            document.querySelectorAll('a[href^="#"]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    if (!href || href === '#') return;
+                    e.preventDefault();
+                    const id = href.replace('#', '');
+                    navegarParaId(id);
+
+                    // Fecha o menu dropdown após clicar em um item
+                    if (menuDropdown) {
+                        menuDropdown.classList.add('hidden');
+                        menuDropdown.classList.remove('flex');
+                        if (menuButton) menuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+
+            // Se carregar a página já com hash (ex: #verificador ou #sobre), navega diretamente
+            if (window.location.hash) {
+                const idInicial = window.location.hash.replace('#', '');
+                setTimeout(() => {
+                    navegarParaId(idInicial);
+                }, 150);
+            }
+
+            const secoesAnimadas = document.querySelectorAll('[data-animar]');
+            secoesAnimadas.forEach((secao) => {
+                secao.style.opacity = '0';
+                secao.style.transform = 'translateY(18px)';
+                secao.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+
+            const observador = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                            observador.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.05 }
+            );
+            secoesAnimadas.forEach((secao) => observador.observe(secao));
+
+            // Alternar Sites / Canais do YouTube
+            const btnAlternarSites = document.getElementById('btn-alternar-sites');
+            const tituloSites = document.getElementById('titulo-sites');
+            const listaSites = document.getElementById('lista-sites');
+            const listaCanais = document.getElementById('lista-canais');
+
+            if (btnAlternarSites && tituloSites && listaSites && listaCanais) {
+                let mostrandoCanais = false;
+
+                btnAlternarSites.addEventListener('click', () => {
+                    mostrandoCanais = !mostrandoCanais;
+
+                    if (mostrandoCanais) {
+                        tituloSites.textContent = 'Canais recomendados';
+                        btnAlternarSites.textContent = 'Sites recomendados';
+                        listaSites.classList.add('hidden');
+                        listaSites.classList.remove('flex');
+                        listaCanais.classList.remove('hidden');
+                        listaCanais.classList.add('flex');
+                    } else {
+                        tituloSites.textContent = 'Sites recomendados';
+                        btnAlternarSites.textContent = 'Canais do YouTube recomendados';
+                        listaCanais.classList.add('hidden');
+                        listaCanais.classList.remove('flex');
+                        listaSites.classList.remove('hidden');
+                        listaSites.classList.add('flex');
+                    }
+                });
+            }
+
+            // Verificação de autenticação do usuário
+            const usuarioSalvoRaw = localStorage.getItem('usuarioLogado');
+            let usuarioLogado = null;
+            try {
+                usuarioLogado = usuarioSalvoRaw ? JSON.parse(usuarioSalvoRaw) : null;
+            } catch (err) {
+                usuarioLogado = null;
+            }
+
+            const itemLogin = document.getElementById('item-login');
+            const itemCadastro = document.getElementById('item-cadastro');
+            const itemUsuarioLogado = document.getElementById('item-usuario-logado');
+            const labelUsuarioNome = document.getElementById('label-usuario-nome');
+            const btnSairSite = document.getElementById('btn-sair-site');
+            const verificadorBloqueado = document.getElementById('verificador-bloqueado');
+            const formVerificador = document.getElementById('form-verificador');
+
+            if (usuarioLogado) {
+                if (itemLogin) itemLogin.classList.add('hidden');
+                if (itemCadastro) itemCadastro.classList.add('hidden');
+                if (itemUsuarioLogado) itemUsuarioLogado.classList.remove('hidden');
+                if (labelUsuarioNome) labelUsuarioNome.textContent = `Olá, ${usuarioLogado.nome || usuarioLogado.email.split('@')[0]}`;
+                if (verificadorBloqueado) verificadorBloqueado.classList.add('hidden');
+                if (formVerificador) formVerificador.classList.remove('hidden');
+            } else {
+                if (itemLogin) itemLogin.classList.remove('hidden');
+                if (itemCadastro) itemCadastro.classList.remove('hidden');
+                if (itemUsuarioLogado) itemUsuarioLogado.classList.add('hidden');
+                if (verificadorBloqueado) verificadorBloqueado.classList.remove('hidden');
+                if (formVerificador) formVerificador.classList.add('hidden');
+            }
+
+            if (btnSairSite) {
+                btnSairSite.addEventListener('click', () => {
+                    localStorage.removeItem('usuarioLogado');
+                    sessionStorage.removeItem('conversaAtualId');
+                    window.location.reload();
+                });
+            }
+
+            // Protege links para a IA: exige login prévio
+            document.querySelectorAll('a[href*="APIGROQ"]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    if (!localStorage.getItem('usuarioLogado')) {
+                        e.preventDefault();
+                        alert('Acesso restrito: Faça login para acessar o assistente de IA.');
+                        window.location.href = 'DB.html?redirect=ia';
+                    }
+                });
+            });
+
+            // Verificador de sites
+            const inputUrl = document.getElementById('input-url-verificador');
+            const resultadoVerificador = document.getElementById('resultado-verificador');
+
+            if (formVerificador && inputUrl && resultadoVerificador) {
+                formVerificador.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    // Trava de segurança: somente usuários logados
+                    if (!localStorage.getItem('usuarioLogado')) {
+                        resultadoVerificador.className = 'mx-auto mt-4 max-w-2xl rounded-xl border border-[#E6A06F] bg-[#242739]/90 p-4 text-center text-white block';
+                        resultadoVerificador.textContent = 'Acesso restrito: Faça login para utilizar o verificador.';
+                        return;
+                    }
+
+                    const texto = inputUrl.value.trim();
+
+                    if (!texto) {
+                        resultadoVerificador.className = 'mx-auto mt-4 max-w-2xl rounded-xl border border-[#E6A06F] bg-[#242739]/80 p-4 text-center text-white block';
+                        resultadoVerificador.textContent = 'Digite o endereço de um site para verificar.';
+                        return;
+                    }
+
+                    const urlFormatada = /^https?:\/\//i.test(texto) ? texto : `https://${texto}`;
+
+                    try {
+                        const url = new URL(urlFormatada);
+                        const host = url.hostname.toLowerCase();
+                        const seguro = url.protocol === 'https:';
+                        const academico = ['.gov', '.edu', '.org', 'scielo', 'capes', 'scholar.google'].some((d) => host.includes(d));
+
+                        if (seguro && academico) {
+                            resultadoVerificador.className = 'mx-auto mt-4 max-w-2xl rounded-xl border border-[#9E9C71] bg-[#242739]/85 p-4 text-center text-white block';
+                            resultadoVerificador.textContent = `Site confiável (${host}): possui HTTPS ativo e domínio institucional/acadêmico.`;
+                        } else if (seguro) {
+                            resultadoVerificador.className = 'mx-auto mt-4 max-w-2xl rounded-xl border border-[#E6A06F] bg-[#242739]/85 p-4 text-center text-white block';
+                            resultadoVerificador.textContent = `Conexão segura HTTPS (${host}), mas verifique o autor e as referências antes de usar como fonte.`;
+                        } else {
+                            resultadoVerificador.className = 'mx-auto mt-4 max-w-2xl rounded-xl border border-[#E6A06F] bg-[#242739]/85 p-4 text-center text-white block';
+                            resultadoVerificador.textContent = `Atenção (${host}): este site não utiliza conexão segura HTTPS.`;
+                        }
+                    } catch {
+                        resultadoVerificador.className = 'mx-auto mt-4 max-w-2xl rounded-xl border border-[#E6A06F] bg-[#242739]/85 p-4 text-center text-white block';
+                        resultadoVerificador.textContent = 'Endereço inválido. Tente novamente (ex: https://www.scielo.br).';
+                    }
+                });
             }
         });
     </script>

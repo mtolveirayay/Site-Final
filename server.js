@@ -1,4 +1,4 @@
-import("./APIGROQ/server.js").catch((error) => {
-    console.error("Nao foi possivel iniciar o servidor do AI Control:", error);
-    process.exitCode = 1;
+// Inicia o servidor principal com suporte à API Groq e Banco de dados SQLite persistente
+import('./APIGROQ/server.js').catch((err) => {
+    console.error("Erro ao iniciar o servidor com IA e SQLite:", err);
 });
