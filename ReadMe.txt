@@ -6,7 +6,7 @@ Como executar
 
 Na raiz do projeto, abra dois terminais. Em um, execute ``node server.js``; no outro, execute ``node DBS.js``.
 
-## Depuração do site principal
+Depuração do site principal
 
 No VS Code, depure ``site-Final-main\index.html``. Esse arquivo fica na raiz do projeto, fora de ``APIGROQ`` e ``public``.
 
