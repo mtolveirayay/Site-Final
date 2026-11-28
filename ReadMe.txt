@@ -4,6 +4,13 @@ https://miro.com/app/board/uXjVH59Pi5I=/?share_link_id=55568633277
 
 Como executar
 
+É necessário ter o EXPRESS, groq-sdk e npm instalados, para isso rode no terminal:
+
+npm install 
+npm install express
+npm install groq-sdk 
+
+
 Na raiz do projeto, abra dois terminais. Em um, execute ``node server.js``; no outro, execute ``node DBS.js``.
 
 Depuração do site principal
@@ -15,6 +22,8 @@ Chave da API Groq
 Crie o arquivo `APIGROQ/.env` e adicione a variável abaixo para configurar o acesso à API:
 
 GROQ_API_KEY=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
+
+
 
 
 
